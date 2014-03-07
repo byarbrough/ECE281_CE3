@@ -1,10 +1,10 @@
 ----------------------------------------------------------------------------------
 -- Company: USAFA/DFEC
--- Engineer: Silva
+-- Engineer: Silva & Yarbrough
 -- 
 -- Create Date:    	10:33:47 07/07/2012 
 -- Design Name:		CE3
--- Module Name:    	MooreElevatorController_Shell - Behavioral 
+-- Module Name:    	MooreElevatorController - Behavioral 
 -- Description: 		Shell for completing CE3
 --
 ----------------------------------------------------------------------------------
@@ -48,7 +48,7 @@ begin
 floor_state_machine: process(clk)
 begin
 	--clk'event and clk='1' is VHDL-speak for a rising edge
-	if clk'event and clk='1' then
+	if rising_edge(clk) then
 		--reset is active high and will return the elevator to floor1
 		--Question: is reset synchronous or asynchronous?
 		if reset='1' then
@@ -84,18 +84,23 @@ begin
 				
 --COMPLETE THE NEXT STATE LOGIC ASSIGNMENTS FOR FLOORS 3 AND 4
 				when floor3 =>
-					if (							) then 
-						floor_state <= 
-					elsif (						) then 
-						floor_state <= 	
+					-- go up and don't stop
+					if (up_down='1' and stop='0') then 
+						floor_state <= floor4;
+						--go down and don't stop
+					elsif (up_down='0' and stop='0') then 
+						floor_state <= floor2;	
 					else
-						floor_state <= 	
+					--stay
+						floor_state <= floor3;	
 					end if;
 				when floor4 =>
-					if (							) then 
-						floor_state <= 	
+					--can only go down
+					if (up_down='0' and stop='0') then 
+						floor_state <= floor3;
 					else 
-						floor_state <= 	
+						--stay
+						floor_state <= floor4;	
 					end if;
 				
 				--This line accounts for phantom states
@@ -107,10 +112,10 @@ begin
 end process;
 
 -- Here you define your output logic. Finish the statements below
-floor <= "0001" when (floor_state =       ) else
-			"0010" when (                    ) else
-			"0011" when (                    ) else
-			"0100" when (                    ) else
+floor <= "0001" when ( floor_state = floor1 ) else
+			"0010" when ( floor_state = floor2 ) else
+			"0011" when ( floor_state = floor3 ) else
+			"0100" when ( floor_state = floor4 ) else
 			"0001";
 
 end Behavioral;
