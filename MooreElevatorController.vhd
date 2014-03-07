@@ -20,15 +20,15 @@ use IEEE.STD_LOGIC_1164.ALL;
 --library UNISIM;
 --use UNISIM.VComponents.all;
 
-entity MooreElevatorController_Shell is
+entity MooreElevatorController is
     Port ( clk : in  STD_LOGIC;
            reset : in  STD_LOGIC;
            stop : in  STD_LOGIC;
            up_down : in  STD_LOGIC;
            floor : out  STD_LOGIC_VECTOR (3 downto 0));
-end MooreElevatorController_Shell;
+end MooreElevatorController;
 
-architecture Behavioral of MooreElevatorController_Shell is
+architecture Behavioral of MooreElevatorController is
 
 --Below you create a new variable type! You also define what values that 
 --variable type can take on. Now you can assign a signal as 
