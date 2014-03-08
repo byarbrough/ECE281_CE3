@@ -2,6 +2,7 @@ ECE281_CE3
 ==========
 
 _ECE 281 Moore and Mealy Elevator Controls_
+
 This lab uses both a Moore and Mealy state device to simulate an elevator moving from floor to floor.
 
 Put simply, "In  _Moore machines_ the outputs depend only on the current state of the machine. In _Mealy machines_, the outputs depend on both the current state and the current inputs" (Digital Design 123). These state machines provide additional capabilities over combinational logic circuits because they have a form of temporary memory which can be used to determine the next state and output. Additionally, these circuits are synchronous because they only change on the rising edge of the clock cycle. This is crucial to keeping everything in-line and correct.
